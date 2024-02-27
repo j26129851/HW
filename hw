@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int t;
+    scanf("%d", &t); // 輸入測試數據的數量 t
+
+    int results[t]; // 存儲每個測試數據的結果
+
+    // 處理每一組測試數據
+    for (int i = 0; i < t; i++) {
+        int n, k;
+        int count = 0; //計算是否有兩個偶數
+        int special_case = 0; //特例: k=4 數組全部除k的餘數為一
+        scanf("%d %d", &n, &k); // 輸入單位數量 n 和除數 k
+
+        int magic_values[n];
+        int min_remainder = 0; // 初始化最小餘數為 k
+
+        // 輸入每個單位的魔力值，並計算餘數
+        for (int j = 0; j < n; j++) {
+            scanf("%d", &magic_values[j]);
+            int remainder = magic_values[j] % k;
+            // 更新最小餘數
+
+            if (k == 4 && magic_values[j] % 2==0){
+                count++; // 如果有偶數就count++
+            }
+            if (k == 4 && magic_values[j] % 4==1){
+                special_case++; // 如果有餘一就special_case++
+            }
+
+            if (remainder > min_remainder) {
+                min_remainder = remainder;
+            }
+        }
+
+        // 計算最小操作次數
+        int min_operations = k - min_remainder;
+        if(k == 4 && count>=2){
+            min_operations = 0;
+        }
+        if(k == 4 && special_case>=2){  //判斷特例 ex: 1 1 1 5 5 5, 1 1 1, 1 5 5, 9 9 13
+            if(min_operations > 2){  // 特例最多加兩次即可府和條件
+                min_operations = 2;
+            }
+        }
+
+        results[i] = min_operations; // 存儲結果
+    }
+
+    // 輸出所有結果
+    for (int i = 0; i < t; i++) {
+        printf("%d\n", results[i]);
+    }
+
+    return 0;
+}
