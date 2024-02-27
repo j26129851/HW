@@ -11,7 +11,7 @@ int main()
     // 處理每一組測試數據
     for (int i = 0; i < t; i++) {
         int n, k;
-        int min_operations;
+        int min_operations = 0;
         int count = 0; //計算是否有兩個偶數
         int special_case = 0; //特例: k=4 數組全部除k的餘數為一
         scanf("%d %d", &n, &k); // 輸入單位數量 n 和除數 k
