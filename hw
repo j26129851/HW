@@ -41,9 +41,14 @@ int main()
         if(k == 4 && count>=2){
             min_operations = 0;
         }
-        if(k == 4 && special_case>=2){  //判斷特例 ex: 1 1 1 5 5 5, 1 1 1, 1 5 5, 9 9 13
-            if(min_operations > 2){  // 特例最多加兩次即可府和條件
+        if(k == 4 && special_case>=2){  //判斷特例 ex:k=4 ,1 1 1 5 5 5, 1 1 1, 1 5 5, 9 9 13
+            if(min_operations > 2){  // 特例最多加兩次即可符合條件
                 min_operations = 2;
+            }
+        }
+        if(k == 4 && n-special_case > 0){  //判斷特例 ex:k=4 ,1 2 , 5 4, 1 2 4
+            if(min_operations > 1){  // 特例最多加一次即可符合條件
+                min_operations = 1;
             }
         }
 
